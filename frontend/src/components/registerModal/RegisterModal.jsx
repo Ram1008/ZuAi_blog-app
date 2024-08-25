@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import authContext from '../../contexts/auth/authContext';
-import './registerModal.scss';
+import './RegisterModal.scss';
 
 const RegisterModal = ({ onClose }) => {
     const { registerUser } = useContext(authContext);

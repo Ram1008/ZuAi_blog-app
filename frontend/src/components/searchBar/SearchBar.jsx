@@ -1,4 +1,4 @@
-import './SearchBar.scss';
+import './searchBar.scss';
 import { FaArrowRight } from "react-icons/fa6";
 import { useState, useContext } from 'react';
 import blogContext from '../../contexts/blog/blogContext';
