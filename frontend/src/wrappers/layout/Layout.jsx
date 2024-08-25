@@ -6,10 +6,10 @@ import RegisterModal from '../../components/registerModal/RegisterModal';
 import authContext from '../../contexts/auth/authContext'; 
 
 const Layout = ({ heading, buttonLabel, buttonClick, children }) => {
+  
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
-
-  const { user, logoutUser } = useContext(authContext); // Use authContext
+  const { user, logoutUser } = useContext(authContext);
 
   const handleLoginClick = () => {
     setIsLoginModalOpen(true);
@@ -35,11 +35,11 @@ const Layout = ({ heading, buttonLabel, buttonClick, children }) => {
         <div className='layout__header-button-container'>
           {!user ? (
             <>
-              <button onClick={handleLoginClick}>Login</button>
-              <button onClick={handleRegisterClick}>Register</button>
+              <button className='layout_login-button' onClick={handleLoginClick}>Login</button>
+              <button className='layout_login-button' onClick={handleRegisterClick}>Register</button>
             </>
           ) : (
-            <button onClick={logoutUser}>Logout</button>
+            <button className='layout_logout-button' onClick={logoutUser}>Logout</button>
           )}
         </div>
       </header>

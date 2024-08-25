@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import authContext from './authContext';
+import { APP_Host } from '../../constants/appContants';
 
 const AuthState = (props) => {
-  const host = 'http://localhost:5000/users';
+  const url = `${APP_Host}/users/`;
   const [user, setUser] = useState(null);
 
   const registerUser = async (name, email, password) => {
     try {
-      const response = await fetch(`${host}/register`, {
+      const response = await fetch(`${url}/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,14 +30,13 @@ const AuthState = (props) => {
 
   const loginUser = async (email, password) => {
     try {
-      const response = await fetch(`${host}/login`, {
+      const response = await fetch(`${url}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
-      console.log(email);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -56,7 +56,7 @@ const AuthState = (props) => {
 
   const getUser = async (token) => {
     try {
-      const response = await fetch(`${host}/user`, {
+      const response = await fetch(`${url}/user`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -69,6 +69,7 @@ const AuthState = (props) => {
 
       const json = await response.json();
       setUser(json);
+      return json;
     } catch (error) {
       console.error('Error fetching user:', error);
     }

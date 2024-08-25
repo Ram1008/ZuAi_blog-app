@@ -1,24 +1,29 @@
 @import '../../mixins';
 
 .post_container{
-    @include flex-container(row, flex-start, center);
+    @include flex-container(column);
     padding: 1rem;
     box-sizing: border-box;
     width: 45%;
-    gap: 1rem;
     @include rounder-border(var(--light-gray-color), 10px);
     @include shadow();
 
-    img{
-        height: 100%;
-        width: 40%;
+    .post_body{
+        @include flex-container(row, space-between);
+        img{
+            width: 40%;
+            @include rounder-border(_, 10px);
+            margin-right: 0.5rem ;
+        }
     }
+
+    
     .post_header{
         @include flex-container(row, space-between, center);
         h2{
             font-weight: bold;
             font-size: 20px;
-            margin: 0;
+            margin: 0 0 0.5rem 0;
             width: 75%;
         }
         div{
@@ -40,5 +45,8 @@
                 cursor: pointer;
             }
         }
+    }
+    @media screen and (max-width: 1000px) {
+        width: 100%;
     }
 }

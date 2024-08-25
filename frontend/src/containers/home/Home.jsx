@@ -26,17 +26,23 @@ const Home = () => {
          }
     }, [user]);
 
-    const handleTabClick = (isMyBlogs) => {
+    const handleAllPosts = () => {
+        setShowMyBlogs(false);
+    };  
+
+    const handleMyPosts = () => {
         if (!user) {
             const token = localStorage.getItem('token');
             if (token) {
-                getUser(token);
-                setShowMyBlogs(isMyBlogs);
+                const isUser = getUser(token);
+                if(isUser) {
+                setShowMyBlogs(true);
+                }
             } else {
                 setIsLoginModalOpen(true); 
             }
         } else {
-            setShowMyBlogs(isMyBlogs);
+            setShowMyBlogs(true);
         }
     };
 
@@ -72,13 +78,13 @@ const Home = () => {
                 <div className='home_tab'>
                     <button 
                         className={showMyBlogs ? 'tab' : 'tab active'} 
-                        onClick={() => handleTabClick(false)}
+                        onClick={() => handleAllPosts(false)}
                     >
                         All Blogs
                     </button>
                     <button 
                         className={showMyBlogs ? 'tab active' : 'tab'} 
-                        onClick={() => handleTabClick(true)}
+                        onClick={() => handleMyPosts()}
                     >
                         My Blogs
                     </button>

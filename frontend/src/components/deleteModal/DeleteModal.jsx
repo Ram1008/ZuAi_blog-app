@@ -1,4 +1,3 @@
-import React from 'react';
 import './deleteModal.scss'; 
 
 const DeleteConfirmationModal = ({ onConfirm, onCancel }) => {

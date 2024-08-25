@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import './loginModal.scss';
-import authContext from '../../contexts/auth/authContext'; // Import authContext
+import authContext from '../../contexts/auth/authContext'; 
 
 const LoginModal = ({ onClose }) => {
     const [loginData, setLoginData] = useState({

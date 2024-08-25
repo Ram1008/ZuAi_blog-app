@@ -30,3 +30,12 @@
     font-weight: 600;
     width: $width;
 }
+@mixin hollowButton($color: rgba(0, 0, 0, 0.24), $width: 0px) {
+    padding: 1rem 0;
+    box-sizing: border-box;
+    @include rounder-border($color, 10px);
+    color: $color;
+    font-size: 13px;
+    font-weight: 600;
+    width: $width;
+}

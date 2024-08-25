@@ -1,28 +1,39 @@
 import { useState } from 'react';
 import './post.scss';
 import ViewModal from '../viewModal/ViewModal';
+import { APP_Host } from '../../constants/appContants';
 
 const Post = ({ title, description, image }) => {
+    
     const [showViewModal, setShowViewModal] = useState(false);
-    const host = 'http://localhost:5000/uploads/';
-    const getFirst14Words = (text) => {
+    const imageURL = `${APP_Host}/uploads/`;
+
+    const truncate = (text) => {
         const words = text.split(' ');
-        return words.slice(0, 14).join(' ') + (words.length > 14 ? '...' : '');
+        const truncatedText = words.slice(0, 19).join(' ');
+        return (
+            <div>
+                {truncatedText}
+                {words.length > 14 && (
+                    <span 
+                        onClick={() => setShowViewModal(true)} 
+                        style={{ fontWeight: '700', fontSize: '12px', cursor: 'pointer', marginLeft: '4px' }}
+                    >
+                        ...Read more
+                    </span>
+                )}
+            </div>
+        );
     };
+    
 
     return (
         <div className='post_container'>
-            <img src={host+image} alt={title} />
-            <div>
-                <div className='post_title'>{title}</div>
+            <div className='post_title'>{title}</div>
+            <div className='post_body'>
+                <img src={imageURL+image} alt={title} />
                 <div>
-                    {getFirst14Words(description)}
-                    <span 
-                        style={{ fontWeight: '700', fontSize: '12px', cursor: 'pointer' }} 
-                        onClick={() => setShowViewModal(true)}
-                    >
-                        Read more
-                    </span>
+                    {truncate(description)}
                 </div>
             </div>
             {showViewModal && (

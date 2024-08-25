@@ -28,7 +28,7 @@ const RegisterModal = ({ onClose }) => {
         if (!registerData.name) newErrors.name = 'Name is required';
         if (!registerData.email) newErrors.email = 'Email is required';
         if (!registerData.password) newErrors.password = 'Password is required';
-        // Add more validations if needed
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -37,7 +37,7 @@ const RegisterModal = ({ onClose }) => {
         if (validateForm()) {
             try {
                 await registerUser(registerData.name, registerData.email, registerData.password);
-                onClose(); // Close the modal on successful registration
+                onClose(); 
             } catch (error) {
                 console.error('Error registering user:', error);
             }

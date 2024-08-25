@@ -24,13 +24,21 @@
                 color: var(--primary-color);
             }
         }
+        @media screen and (max-width: 500px) {
+            gap: 1.5rem;
+            padding: 0.5rem 2rem;
+        }
     }
 
     .home_body {
-        @include flex-container(row, flex-start, flex-start);
+        @include flex-container(row, flex-start);
         flex-flow: row wrap;
         padding: 1rem 0;
         box-sizing: border-box;
-        gap: 2rem;
+        gap: 2rem 4rem;
+
+        @media screen and (max-width: 1000px) {
+            @include flex-container(column, flex-start, center);
+        }
     }
 }

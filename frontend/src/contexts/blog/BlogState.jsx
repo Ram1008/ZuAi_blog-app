@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import blogContext from './blogContext';
+import {APP_Host} from '../../constants/appContants';
 
 const BlogState = (props) => {
-  const host = 'http://localhost:5000';
   const [blogs, setBlogs] = useState([]);
   const [blog, setBlog] = useState({ title: '', description: '', image: '' });
   const [myBlogs, setMyBlogs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const url = `${APP_Host}/blog/`;
 
-  // Fetch all blogs
   const getAllBlogs = async () => {
     try {
-      const response = await fetch(`${host}/blog/posts`, {
+      const response = await fetch(`${url}posts`, {
         method: 'GET',
       });
 
@@ -20,7 +20,6 @@ const BlogState = (props) => {
       }
 
       const json = await response.json();
-      console.log(json);
       setBlogs(json);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -28,7 +27,7 @@ const BlogState = (props) => {
   };
   const getMyBlogs = async () =>{
     try {
-      const response = await fetch(`${host}/blog/my-posts`, {
+      const response = await fetch(`${url}my-posts`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`, 
@@ -46,10 +45,10 @@ const BlogState = (props) => {
       console.error('Error fetching blogs:', error);
     }
   };
-  // Fetch a single blog by ID
+  
   const getABlog = async (id) => {
     try {
-      const response = await fetch(`${host}/blog/posts/${id}`, {
+      const response = await fetch(`${url}posts/${id}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`, 
@@ -68,7 +67,6 @@ const BlogState = (props) => {
     }
   };
 
-  // Add a new blog
   const addABlog = async (title, description, image) => {
     const formData = new FormData();
     formData.append('title', title);
@@ -76,7 +74,7 @@ const BlogState = (props) => {
     formData.append('image', image);
 
     try {
-      const response = await fetch(`${host}/blog/posts`, {
+      const response = await fetch(`${url}posts`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`, 
@@ -89,13 +87,13 @@ const BlogState = (props) => {
       }
 
       await response.json();
-      getAllBlogs(); 
+      getMyBlogs(); 
+      getAllBlogs();
     } catch (error) {
       console.error('Error adding blog:', error);
     }
   };
 
-  // Update an existing blog
   const updateABlog = async (id, title, description, image) => {
     const formData = new FormData();
     if (title) formData.append('title', title);
@@ -103,7 +101,7 @@ const BlogState = (props) => {
     if (image) formData.append('image', image);
 
     try {
-      const response = await fetch(`${host}/blog/posts/${id}`, {
+      const response = await fetch(`${url}posts/${id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -130,7 +128,6 @@ const BlogState = (props) => {
     );
   };
 
-  // Filtering function for myBlogs
   const filterMyBlogs = (myBlogs) => {
     return myBlogs.filter(blog => 
       blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -138,10 +135,9 @@ const BlogState = (props) => {
     );
   };
 
-  // Delete a blog
   const deleteABlog = async (id) => {
     try {
-      const response = await fetch(`${host}/blog/posts/${id}`, {
+      const response = await fetch(`${url}posts/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
