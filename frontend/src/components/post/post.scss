@@ -1,0 +1,20 @@
+@import '../../mixins';
+
+.post_container{
+    @include flex-container(row, flex-start, center);
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 45%;
+    gap: 1rem;
+    @include rounder-border(var(--light-gray-color), 10px);
+    @include shadow();
+
+    img{
+        height: 100%;
+        width: 40%;
+    }
+    .post_title{
+        font-weight: bold;
+        font-size: 20px;
+    }
+}

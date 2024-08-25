@@ -1,0 +1,32 @@
+@mixin flex-container($direction: row, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin backgroundImage($url) {
+  background-image: url($url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@mixin rounder-border($color: transparent, $bR: 0) {
+  border: 1px solid $color;
+  border-radius: $bR;
+}
+
+@mixin shadow($color: rgba(0, 0, 0, 0.24), $offsetX: 0px, $offsetY: 3px, $blur: 8px) {
+  box-shadow: $color $offsetX $offsetY $blur;
+}
+@mixin filledButton($color: rgba(0, 0, 0, 0.24), $width: 0px) {
+    padding: 1rem 0;
+    box-sizing: border-box;
+    @include rounder-border($color, 10px);
+    color: white;
+    background-color: $color;
+    font-size: 13px;
+    font-weight: 600;
+    width: $width;
+}

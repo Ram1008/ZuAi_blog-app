@@ -1,0 +1,36 @@
+@import '../../mixins';
+
+.search_container {
+    @include flex-container(row, center, center);
+    width: 35%;
+    @include rounder-border(var(--primary-color), 10px);
+    height: 3rem;
+    box-sizing: border-box;
+    overflow: hidden; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+    input,
+    button {
+      border: none;
+      outline: none;
+      background: none;
+      font-family: sans-serif;
+    }
+  
+    input {
+      width: 100%;
+      padding: 0 0 0 0.5rem;
+    }
+  
+    button {
+      cursor: pointer;
+      @include flex-container(row, center, center);
+    }
+    @media (max-width: 1200px) {
+      width: 45%;
+    }
+    @media (max-width: 1000px) {
+      width: 55%;
+    }
+  }
+  

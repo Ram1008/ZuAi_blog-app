@@ -1,0 +1,44 @@
+@import '../../mixins';
+
+.post_container{
+    @include flex-container(row, flex-start, center);
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 45%;
+    gap: 1rem;
+    @include rounder-border(var(--light-gray-color), 10px);
+    @include shadow();
+
+    img{
+        height: 100%;
+        width: 40%;
+    }
+    .post_header{
+        @include flex-container(row, space-between, center);
+        h2{
+            font-weight: bold;
+            font-size: 20px;
+            margin: 0;
+            width: 75%;
+        }
+        div{
+            .post_edit-button{
+                height: 20px;
+                width: 20px;
+                @include backgroundImage('../../assets/pencil.png');
+                border: none;
+                background-color: none;
+                margin-right: 1.5rem;
+                cursor: pointer;
+            }
+            .post_delete-button{
+                height: 20px;
+                width: 20px;
+                @include backgroundImage('../../assets/trash.png');
+                border: none;
+                background-color: none;
+                cursor: pointer;
+            }
+        }
+    }
+}

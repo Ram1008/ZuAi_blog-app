@@ -1,0 +1,36 @@
+@import '../../mixins';
+
+.home_container {
+    @include flex-container(column, center, center);
+    
+    .home_tab {
+        @include flex-container(row, space-between, center);
+        background-color: var(--light-gray-color);
+        margin-bottom: 1rem;
+        gap: 2rem;
+        padding: 0.5rem 3rem;
+        box-sizing: border-box;
+        @include rounder-border(var(--silent-color), 10px);
+        .tab {
+            padding: 0.5rem 1rem;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            @include rounder-border(var(--silent-color), 10px);
+
+            &.active {
+                @include rounder-border(var(--primary-color), 10px);
+                color: var(--primary-color);
+            }
+        }
+    }
+
+    .home_body {
+        @include flex-container(row, flex-start, flex-start);
+        flex-flow: row wrap;
+        padding: 1rem 0;
+        box-sizing: border-box;
+        gap: 2rem;
+    }
+}
