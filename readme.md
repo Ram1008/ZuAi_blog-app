@@ -17,12 +17,12 @@ This is a full-stack web application built with the MERN stack (MongoDB, Express
 
 - **Frontend**: 
   - React with Vite
-  - Tailwind CSS/Sass for styling
-  - React Router for routing
+  - Sass for styling
 - **Backend**:
   - Node.js with Express.js
   - MongoDB for database
   - Mongoose for data modeling
+  - Multer for posting images
 - **Authentication**:
   - JWT for token-based authentication
   - bcrypt for password hashing
