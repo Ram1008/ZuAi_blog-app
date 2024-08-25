@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import './Layout.scss';
+import './layout.scss';
 import SearchBar from '../../components/searchBar/SearchBar';
 import LoginModal from '../../components/loginModal/LoginModal';
 import RegisterModal from '../../components/registerModal/RegisterModal';
