@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react';
 import './editModal.scss';
 import blogContext from '../../contexts/blog/blogContext';
+import { APP_Host } from '../../constants/appContants';
 
 const EditModal = ({ id, title, description, image, onClose }) => {
 
     const { updateABlog } = useContext(blogContext);
+    const imageURL = `${APP_Host}/uploads/`;
     const [updatedBlog, setUpdatedBlog] = useState({
         title,
         description,
@@ -75,7 +77,7 @@ const EditModal = ({ id, title, description, image, onClose }) => {
                     </label>
                     {previewImage && (
                         <img
-                            src={previewImage}
+                            src={imageURL+previewImage}
                             alt="Preview"
                             className="modal__image-preview"
                         />
