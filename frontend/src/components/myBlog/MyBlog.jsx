@@ -9,6 +9,7 @@ const MyBlog = ({ id, title, description, image }) => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showViewModal, setShowViewModal] = useState(false);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // State for delete confirmation modal
+    const host = 'http://localhost:5000/uploads/';
 
     const { deleteABlog } = useContext(blogContext); // Get delete function from context
 
@@ -24,7 +25,7 @@ const MyBlog = ({ id, title, description, image }) => {
 
     return (
         <div className='post_container'>
-            <img src={image} alt={title} />
+            <img src={host+image} alt={title} />
             <div>
                 <div className='post_header'>
                     <h2>{title}</h2>
